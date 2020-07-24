@@ -8,7 +8,6 @@ import hamburgerIcon from './assets/svg/hamburger-icon.svg';
 import volumenIcon from './assets/svg/volumen-icon.svg';
 import clockIcon from './assets/svg/clock-icon.svg';
 import infoIcon from './assets/svg/info-icon.svg';
-import arrowIcon from './assets/svg/arrow-icon.svg';
 import computerIcon from './assets/svg/computer-icon.svg';
 import usableImage from './assets/images/737019b02fb813c4e40c5e7a40165e50.jpeg';
 import universalImage from './assets/images/c8dd550a784a695f0636ce0e73151a54.jpeg';
@@ -39,15 +38,37 @@ const ArrowIcon = ({ color = '#3A0CA3' }) => (
   </svg>
 );
 
-export default function UnauthenticatedApp() {
+export default function Home() {
+  const [error, setError] = React.useState(false)
+  const ref = React.useRef()
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    ref.current.focus()
+    setError(true)
+  }
+
   return (
     <div css={style}>
       <header>
         <div className="container">
-          <i>
-            <img src={hamburgerIcon} className="icon" />
+          <i
+            tabIndex={0}
+            role="button"
+            aria-label="Mostrar las opciones de menú"
+          >
+            <img
+              src={hamburgerIcon}
+              className="icon"
+              alt="Botón para ingresar al menu"
+            />
           </i>
-          <img src={logo} />
+          <a href="/">
+            <img
+              src={logo}
+              alt="Logo Diseño Inclusivo significa mejor diseño para todos"
+            />
+          </a>
         </div>
         <div className="title">
           <h4>Demo</h4>
@@ -65,55 +86,70 @@ export default function UnauthenticatedApp() {
           <nav>
             <ul>
               <li>
-                <i>
-                  <span className="line" />
-                  <img src={volumenIcon} />
-                </i>
-                <h4>Perceivable</h4>
-                <span>Perceptible</span>
-                <p>
-                  La información y los componentes de la interfaz de usuario
-                  deben ser presentables a los usuarios de manera que puedan
-                  percibirlos.
-                </p>
+                <a href="/link">
+                  <i>
+                    <span className="line" />
+                    <img src={volumenIcon} alt="Imagen de un ícono de sonido" />
+                  </i>
+                  <h4 aria-hidden>Perceivable</h4>
+                  <span>Perceptible</span>
+                  <p>
+                    La información y los componentes de la interfaz de usuario
+                    deben ser presentables a los usuarios de manera que puedan
+                    percibirlos.
+                  </p>
+                </a>
               </li>
               <li>
-                <i>
-                  <span className="line" />
-                  <img src={clockIcon} />
-                </i>
-                <h4>Operable</h4>
-                <span>Operable</span>
-                <p>
-                  Los componentes de la interfaz de usuario y la navegación
-                  deben ser operables. Como un teclado accesible y evitar los
-                  disparadores de convulsiones.
-                </p>
+                <a href="/link">
+                  <i>
+                    <span className="line" />
+                    <img src={clockIcon} alt="Imagen de un ícono de reloj" />
+                  </i>
+                  <h4 aria-hidden>Operable</h4>
+                  <span>Operable</span>
+                  <p>
+                    Los componentes de la interfaz de usuario y la navegación
+                    deben ser operables. Como un teclado accesible y evitar los
+                    disparadores de convulsiones.
+                  </p>
+                </a>
               </li>
               <li>
-                <i>
-                  <span className="line" />
-                  <img src={infoIcon} />
-                </i>
-                <h4>Understandable</h4>
-                <span>Comprensible</span>
-                <p>
-                  La información y los componentes de la interfaz de usuario
-                  deben ser presentables a los usuarios de manera que puedan
-                  percibirlos.
-                </p>
+                <a href="/link">
+                  <i>
+                    <span className="line" />
+                    <img
+                      src={infoIcon}
+                      alt="Imagen de un ícono de información"
+                    />
+                  </i>
+                  <h4 aria-hidden>Understandable</h4>
+                  <span>Comprensible</span>
+                  <p>
+                    La información y los componentes de la interfaz de usuario
+                    deben ser presentables a los usuarios de manera que puedan
+                    percibirlos.
+                  </p>
+                </a>
               </li>
               <li>
-                <i>
-                  <span className="line" />
-                  <img src={computerIcon} />
-                </i>
-                <h4>Robust</h4>
-                <span>Robusto</span>
-                <p>
-                  El contenido debe ser interpretado por una amplia variedad de
-                  agentes de usuario, incluidas las tecnologías de asistencia.
-                </p>
+                <a href="/link">
+                  <i>
+                    <span className="line" />
+                    <img
+                      src={computerIcon}
+                      alt="Imagen de un ícono de una computadora"
+                    />
+                  </i>
+                  <h4 aria-hidden>Robust</h4>
+                  <span>Robusto</span>
+                  <p>
+                    El contenido debe ser interpretado por una amplia variedad
+                    de agentes de usuario, incluidas las tecnologías de
+                    asistencia.
+                  </p>
+                </a>
               </li>
             </ul>
           </nav>
@@ -129,7 +165,10 @@ export default function UnauthenticatedApp() {
                 Ofrezca formas de ayudar a sus usuarios a navegar y determinar
                 dónde están dentro de su sitio Web.
               </p>
-              <button>
+              <button
+                type="button"
+                aria-label="Ir al detalle del artículo sobre Navegabilidad"
+              >
                 Ir al detalle
                 <i>
                   <ArrowIcon />
@@ -146,7 +185,10 @@ export default function UnauthenticatedApp() {
                 Ofrezca alternativas para cualquier información presentada
                 exclusivamente a través de audio o vídeo.
               </p>
-              <button>
+              <button
+                type="button"
+                aria-label="Ir al detalle del artículo sobre Contenido"
+              >
                 Ir al detalle
                 <i>
                   <ArrowIcon />
@@ -163,7 +205,10 @@ export default function UnauthenticatedApp() {
                 Opciones como tamaño de letra extra grande, braille, texto
                 hablado, lenguaje de signos o un lenguaje más sencillo.
               </p>
-              <button>
+              <button
+                type="button"
+                aria-label="Ir al detalle del artículo sobre Alternativas de texto"
+              >
                 Ir al detalle
                 <i>
                   <ArrowIcon />
@@ -181,9 +226,7 @@ export default function UnauthenticatedApp() {
               <br />
               información sobre cómo satisfacer las
               <br />
-              <span>necesidades di</span>
-              g
-              <span>itales</span>
+              <span>necesidades di</span>g<span>itales</span>
               <br />
               asistidas de sus usuarios:
             </p>
@@ -191,15 +234,36 @@ export default function UnauthenticatedApp() {
             <div className="line" />
           </article>
           <article>
-            <form>
+            <form
+              aria-label="Formulario para poder suscribirse al boletín de accesibilidad"
+              onSubmit={handleSubmit}
+            >
               <span>
                 Ingrese los siguientes datos para recibir el boletín de
                 accesibilidad:
               </span>
 
-              <TextField id="name" label="NOMBRE" />
-              <TextField id="email" label="EMAIL" />
+              <p ref={ref} role="alert" className="alert">
+                {error
+                  ? "Su formulario no fue enviado porque contiene errores"
+                  : ""}
+              </p>
 
+              <TextField
+                id="name"
+                label="NOMBRE"
+                error={error}
+                helperText={error ? "Debe ingresar su nombre" : ""}
+              />
+              <TextField
+                id="email"
+                label="EMAIL"
+                error={error}
+                aria-describedby="email-error"
+              />
+              <p id="email-error" className="error">
+                {error ? "Debes ingresar un email correcto" : ""}
+              </p>
               <button type="submit">
                 Suscribirme al boletín
                 <i>
@@ -227,6 +291,17 @@ export default function UnauthenticatedApp() {
 }
 
 const style = css`
+  .Mui-error {
+    color: red !important;
+    font-size: 14px !important;
+  }
+  .error {
+    display: none;
+  }
+  .alert {
+    font-size: 1px !important;
+    line-height: 0 !important;
+  }
   header {
     font-style: normal;
     font-weight: 800;
@@ -309,6 +384,15 @@ const style = css`
           :last-of-type {
             border-right: unset;
             padding-right: unset;
+          }
+
+          :focus-within {
+              border: 1px solid #000;
+          }
+
+          a {
+            text-decoration: none;
+            outline: none;
           }
 
           i {
@@ -516,7 +600,7 @@ const style = css`
           }
 
           .MuiTextField-root {
-            margin-top: 60px;
+            margin-top: 50px;
           }
 
           input {
